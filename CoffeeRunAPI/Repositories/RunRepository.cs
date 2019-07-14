@@ -25,7 +25,7 @@ namespace CoffeeRunAPI.Repositories
 
         public async Task<IEnumerable<Run>> GetAllRuns()
         {
-            var runs = await _db.Runs.ToListAsync();
+            var runs = await _db.Runs.Where(r => r.TimeToRun < DateTime.Now).ToListAsync();
             return runs;
         }
 
